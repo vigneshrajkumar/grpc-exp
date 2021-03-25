@@ -1,0 +1,12 @@
+syntax = "proto3";
+import "google/protobuf/empty.proto";
+
+option go_package = "/pb";
+
+service Petstore {
+    rpc GetCatalogue(google.protobuf.Empty) returns (Catalogue) {}
+}
+
+message Catalogue {
+    map<string, int32> pets = 1;
+}
