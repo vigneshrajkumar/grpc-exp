@@ -5,8 +5,24 @@ option go_package = "/pb";
 
 service Petstore {
     rpc GetCatalogue(google.protobuf.Empty) returns (Catalogue) {}
+    rpc ListPets(google.protobuf.Empty) returns (stream Animal) {}
+    rpc OfferPets(stream Animal) returns (Offer) {}
+    rpc Negotiate(stream Message) returns (stream Message) {}
+}
+
+message Message {
+    string contents = 1;
+}
+
+message Offer {
+    string message = 1;
 }
 
 message Catalogue {
     map<string, int32> pets = 1;
+}
+
+message Animal {
+    string name = 1;
+    int32 cost = 2;
 }
